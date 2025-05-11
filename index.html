@@ -28,6 +28,7 @@
         const installBtn = document.getElementById("install");
 
         window.addEventListener("beforeinstallprompt", (e) => {
+            console.log('beforeinstallprompt event fired')
             // Prevent automatic prompt
             e.preventDefault();
             deferredPrompt = e;
