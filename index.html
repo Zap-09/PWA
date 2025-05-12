@@ -1,53 +1,29 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Simple Notes App</title>
-    <link rel="manifest" href="manifest.json" />
-    <link rel="stylesheet" href="style.css" />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>CBZ Reader PWA</title>
+  <link rel="manifest" href="manifest.json" />
+  <link rel="stylesheet" href="style.css" />
 </head>
-
 <body>
-    <h1>Simple Notes</h1>
-    <textarea id="note" placeholder="Write your note here..."></textarea>
-    <button id="save">Save Note</button>
-    <button id="install" style="display: none">Install App</button>
-    <!-- Install Button -->
+  <h1>📚 CBZ Reader</h1>
+  <button id="open-folder">Open CBZ Folder</button>
+  <div id="file-list"></div>
+  <div id="viewer"></div>
 
-    <script src="script.js"></script>
-    <script>
-        // Service worker registration
-        if ("serviceWorker" in navigator) {
-            navigator.serviceWorker.register("service-worker.js");
-        }
+  <script src="https://cdn.jsdelivr.net/npm/jszip@3.10.1/dist/jszip.min.js"></script>
+  <script src="app.js"></script>
+  <script>
+  if ('serviceWorker' in navigator) {
+    window.addEventListener('load', () => {
+      navigator.serviceWorker.register('/service-worker.js')
+        .then(reg => console.log('Service Worker registered:', reg.scope))
+        .catch(err => console.error('Service Worker registration failed:', err));
+    });
+  }
+</script>
 
-        // PWA install button logic
-        let deferredPrompt;
-        const installBtn = document.getElementById("install");
-
-        window.addEventListener("beforeinstallprompt", (e) => {
-            console.log('beforeinstallprompt event fired')
-            // Prevent automatic prompt
-            e.preventDefault();
-            deferredPrompt = e;
-            installBtn.style.display = "inline-block";
-
-            installBtn.addEventListener("click", () => {
-                installBtn.style.display = "none";
-                deferredPrompt.prompt();
-                deferredPrompt.userChoice.then((choiceResult) => {
-                    if (choiceResult.outcome === "accepted") {
-                        console.log("User accepted the install prompt");
-                    } else {
-                        console.log("User dismissed the install prompt");
-                    }
-                    deferredPrompt = null;
-                });
-            });
-        });
-    </script>
 </body>
-
 </html>
