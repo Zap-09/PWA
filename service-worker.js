@@ -1,17 +1,17 @@
 const CACHE_NAME = 'pwa-cache-v1';
 const ASSETS_TO_CACHE = [
-  'index.html',
-  'styles.css',
-  'app.js',
-  'manifest.json',
-  'img/icon-72.png',
-  'img/icon-96.png',
-  'img/icon-128.png',
-  'img/icon-144.png',
-  'img/icon-152.png',
-  'img/icon-192.png',
-  'img/icon-384.png',
-  'img/icon-512.png'
+  '/index.html',
+  '/styles.css',
+  '/app.js',
+  '/manifest.json',
+  '/img/icon-72.png',
+  '/img/icon-96.png',
+  '/img/icon-128.png',
+  '/img/icon-144.png',
+  '/img/icon-152.png',
+  '/img/icon-192.png',
+  '/img/icon-384.png',
+  '/img/icon-512.png'
 ];
 
 // Install event
